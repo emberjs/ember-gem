@@ -1,0 +1,7 @@
+require('<%= name %>/core');
+require('<%= name %>/store');
+require('<%= name %>/state_manager');
+require('<%= name %>/routes');
+
+// Ember.routes.wantsHistory = true;
+Ember.routes.add('', App, App.routes.mainRoute);

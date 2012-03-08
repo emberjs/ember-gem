@@ -1,0 +1,10 @@
+require('sproutcore-routing');
+
+require('<%= name %>/core');
+
+App.routes = {
+
+  mainRoute: function(params) {
+  }
+
+};

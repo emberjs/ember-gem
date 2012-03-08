@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require 'ember/cli'
+
+Ember::CLI.start

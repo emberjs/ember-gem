@@ -1,0 +1,11 @@
+require('<%= name %>/core');
+require('<%= name %>/states/start');
+
+App.stateManager = Ember.StateManager.create({
+
+  rootElement: '#main',
+  initialState: 'start',
+
+  start: App.StartState
+
+});
