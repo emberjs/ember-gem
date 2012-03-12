@@ -29,6 +29,7 @@ describe Ember::CLI do
         path('index.html').should exist
         path('LICENSE').should exist
         path('README.md').should exist
+        path('Rakefile').should exist
       end
 
       it 'creates app/css files' do
@@ -70,6 +71,20 @@ describe Ember::CLI do
         path('app/vendor/ember.js').should exist
         path('app/vendor/jquery.js').should exist
         path('app/vendor/sproutcore-routing.js').should exist
+      end
+
+      it 'creates app/tests files' do
+        path('app/tests').should exist
+        path("app/tests/#{app_name}_tests.js").should exist
+      end
+
+      it 'creates tests/ files' do
+        path('tests').should exist
+        path('tests/qunit').should exist
+        path('tests/qunit/qunit.css').should exist
+        path('tests/qunit/qunit.js').should exist
+        path('tests/qunit/run-qunit.js').should exist
+        path('tests/index.html').should exist
       end
     end
 

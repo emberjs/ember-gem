@@ -1,0 +1,5 @@
+module("<%= title %>");
+
+test("something", function () {
+  ok(true, "something is true");
+});
