@@ -2,6 +2,9 @@ source "http://rubygems.org"
 
 gem "colored"
 
+gem "guard"
+gem "guard-rake"
+
 gem "rack"
 gem "rack-rewrite"
 # gem "rack-streaming-proxy"
