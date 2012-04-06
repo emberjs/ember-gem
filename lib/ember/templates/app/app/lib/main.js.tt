@@ -3,5 +3,5 @@ require('<%= name %>/store');
 require('<%= name %>/state_manager');
 require('<%= name %>/routes');
 
-// Ember.routes.wantsHistory = true;
-Ember.routes.add('', App, App.routes.mainRoute);
+// SC.routes.wantsHistory = true;
+SC.routes.add('', App, App.routes.mainRoute);
