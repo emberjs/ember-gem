@@ -24,6 +24,7 @@ App Structure
     │   │   └── loader.js - JS module loader
     │   ├── static - Static files, never touched, copied over during build
     │   ├── templates - Handlebars templates, *modularized during build*
+    │   ├── tests - QUnit application tests
     │   └── vendor - Vendor code, *modularized during build*
     ├── assets - Built out asset files, minified in production
     │   ├── app.css - Built out app CSS/SCSS
@@ -31,4 +32,5 @@ App Structure
     │   └── app.js - Built out app JS
     ├── config.ru - Rack development web server configuration
     ├── index.html - The app entry point
+    ├── tests - Test scaffolding
     └── tmp - Temporary build files used by rakep
