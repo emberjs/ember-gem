@@ -17,7 +17,7 @@
     </div>
     <script src="assets/loader.js"></script>
     <script src="assets/app.js"></script>
-    <script type="text/javascript">
+    <script>
       loader.require('<%= name %>/main');
     </script>
   </body>
