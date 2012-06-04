@@ -44,7 +44,6 @@ describe Ember::CLI do
         path('app/lib/core.js').should exist
         path('app/lib/ext.js').should exist
         path('app/lib/main.js').should exist
-        path('app/lib/routes.js').should exist
         path('app/lib/state_manager.js').should exist
         path('app/lib/store.js').should exist
         path('app/lib/states').should exist
@@ -71,7 +70,6 @@ describe Ember::CLI do
         path('app/vendor/ember-data.js').should exist
         path('app/vendor/ember.js').should exist
         path('app/vendor/jquery.js').should exist
-        path('app/vendor/sproutcore-routing.js').should exist
       end
 
       it 'creates app/tests files' do
