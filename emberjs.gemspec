@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/ember/version', __FILE__)
+require File.expand_path('../lib/emberjs/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Dudley Flanders", "Devin Torres"]
@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "emberjs"
   gem.require_paths = ["lib"]
-  gem.version       = Ember::VERSION
+  gem.version       = Emberjs::VERSION
 
   gem.add_dependency 'thor'
 

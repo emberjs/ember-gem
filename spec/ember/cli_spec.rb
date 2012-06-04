@@ -1,17 +1,17 @@
 require 'spec_helper'
-require 'ember/cli'
+require 'emberjs/cli'
 
-describe Ember::CLI do
-  def ember(*args)
+describe Emberjs::CLI do
+  def emberjs(*args)
     capture_io {
-      Ember::CLI.start(args)
+      Emberjs::CLI.start(args)
      }
   end
 
   describe "new" do
     shared_examples "a new app" do
       before do
-        ember('new', app_path)
+        emberjs('new', app_path)
       end
 
       def path(*segments)

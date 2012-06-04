@@ -1,6 +1,6 @@
 require 'thor/group'
 
-module Ember
+module Emberjs
   class AppGenerator < Thor::Group
     include Thor::Actions
 

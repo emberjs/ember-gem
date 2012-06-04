@@ -1,3 +1,3 @@
-module Ember
+module Emberjs
   VERSION = "0.0.1"
 end

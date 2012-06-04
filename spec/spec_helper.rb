@@ -1,7 +1,7 @@
 require 'pry'
 require 'stringio'
 
-module EmberSpecHelpers
+module EmberjsSpecHelpers
   def capture_io
     original_stdout, original_stderr = $stdout, $stderr
     $stdout, $stderr = StringIO.new, StringIO.new
@@ -24,7 +24,7 @@ RSpec::Matchers.define :have_contents do |expected|
 end
 
 RSpec.configure do |c|
-  c.include EmberSpecHelpers
+  c.include EmberjsSpecHelpers
 
   original = Dir.pwd
 
