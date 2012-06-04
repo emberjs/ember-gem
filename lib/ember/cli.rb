@@ -5,7 +5,7 @@ module Ember
   class CLI < Thor
     include Thor::Actions
 
-    desc 'new PATH', 'Create a new Ember application'
+    desc 'new PATH', 'Create a new Ember.js application'
     def new(path)
       Ember::AppGenerator.start([path])
     end
