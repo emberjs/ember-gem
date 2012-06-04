@@ -34,6 +34,7 @@ describe Ember::CLI do
 
       it 'creates app/css files' do
         path('app/css').should exist
+        path('app/css/bootstrap-responsive.css').should exist
         path('app/css/bootstrap.css').should exist
         path('app/css/main.css').should exist
       end
