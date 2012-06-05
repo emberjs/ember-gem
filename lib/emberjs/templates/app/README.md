@@ -12,13 +12,7 @@ Running
 Building
 --------
     
-    (Linux/Mac OS)
-    $ export RAKEP_MODE="production"
-    $ bundle exec rakep build
-    
-    (Windows)
-    $ set RAKEP_MODE="production"
-    $ bundle exec rakep build
+    $ emberjs build -m [debug|production]
 
 App Structure
 -------------

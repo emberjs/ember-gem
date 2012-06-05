@@ -9,5 +9,17 @@ module Emberjs
     def new(path)
       Emberjs::AppGenerator.start([path])
     end
+    
+    desc 'build', 'Build the current Ember.js application'
+    method_option :mode, :type => :string, :default => "debug", :aliases => ['-m'], :desc => "Build mode for compile. Either `debug` or `production`"
+    def build
+      if options[:mode] == "debug"
+        ENV['RAKEP_MODE'] = "debug"
+      else
+        ENV['RAKEP_MODE'] = "production"
+      end
+    
+      exec('bundle exec rakep build')
+    end
   end
 end
