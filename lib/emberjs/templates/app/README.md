@@ -7,7 +7,18 @@ Running
 -------
 
     $ bundle install
-    $ bundle exec rackup
+    $ bundle exec rackup # Open http://localhost:9292
+    
+Building
+--------
+    
+    (Linux/Mac OS)
+    $ export RAKEP_MODE="production"
+    $ bundle exec rakep build
+    
+    (Windows)
+    $ set RAKEP_MODE="production"
+    $ bundle exec rakep build
 
 App Structure
 -------------
