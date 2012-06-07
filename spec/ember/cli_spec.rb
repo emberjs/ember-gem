@@ -26,10 +26,11 @@ describe Ember::CLI do
         path('Assetfile').should exist
         path('config.ru').should exist
         path('Gemfile').should exist
+        path('Guardfile').should exist
         path('index.html').should exist
         path('LICENSE').should exist
-        path('README.md').should exist
         path('Rakefile').should exist
+        path('README.md').should exist
       end
 
       it 'creates app/css files' do
@@ -40,14 +41,20 @@ describe Ember::CLI do
 
       it 'creates app/lib files' do
         path('app/lib').should exist
+        path('app/lib/controllers').should exist
         path('app/lib/core.js').should exist
         path('app/lib/ext.js').should exist
         path('app/lib/main.js').should exist
-        path('app/lib/routes.js').should exist
+        path('app/lib/models').should exist
         path('app/lib/state_manager.js').should exist
-        path('app/lib/store.js').should exist
         path('app/lib/states').should exist
         path('app/lib/states/start.js').should exist
+        path('app/lib/store.js').should exist
+        path('app/lib/views').should exist
+      end
+
+      it 'creates app/modules files' do
+        path('app/modules').should exist
       end
 
       it 'creates app/plugins files' do
@@ -58,6 +65,8 @@ describe Ember::CLI do
       it 'creates app/static files' do
         path('app/static').should exist
         path('app/static/img').should exist
+        path('app/static/img/glyphicons-halflings.png').should exist
+        path('app/static/img/glyphicons-halflings-white.png').should exist
       end
 
       it 'creates app/templates files' do
@@ -65,17 +74,16 @@ describe Ember::CLI do
         path('app/templates/main_page.handlebars').should exist
       end
 
+      it 'creates app/tests files' do
+        path('app/tests').should exist
+        path("app/tests/#{app_name}_tests.js").should exist
+      end
+
       it 'creates app/vendor files' do
         path('app/vendor').should exist
         path('app/vendor/ember-data.js').should exist
         path('app/vendor/ember.js').should exist
         path('app/vendor/jquery.js').should exist
-        path('app/vendor/sproutcore-routing.js').should exist
-      end
-
-      it 'creates app/tests files' do
-        path('app/tests').should exist
-        path("app/tests/#{app_name}_tests.js").should exist
       end
 
       it 'creates tests/ files' do
@@ -83,8 +91,8 @@ describe Ember::CLI do
         path('tests/qunit').should exist
         path('tests/qunit/qunit.css').should exist
         path('tests/qunit/qunit.js').should exist
-        path('tests/qunit/run-qunit.js').should exist
         path('tests/index.html').should exist
+        path('tests/run-tests.js').should exist
       end
     end
 

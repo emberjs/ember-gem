@@ -1,7 +1,3 @@
 require('<%= name %>/core');
 require('<%= name %>/store');
 require('<%= name %>/state_manager');
-require('<%= name %>/routes');
-
-// SC.routes.wantsHistory = true;
-SC.routes.add('', App, App.routes.mainRoute);
