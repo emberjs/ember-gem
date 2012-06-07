@@ -1,5 +1,5 @@
 module("<%= title %>");
 
-test("something", function () {
-  ok(true, "something is true");
+test("App is defined", function () {
+  ok(typeof App !== 'undefined', "App is undefined");
 });
