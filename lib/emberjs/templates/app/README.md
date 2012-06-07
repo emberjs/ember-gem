@@ -7,7 +7,12 @@ Running
 -------
 
     $ bundle install
-    $ bundle exec rackup
+    $ bundle exec rackup # Open http://localhost:9292
+    
+Building
+--------
+    
+    $ emberjs build -m [debug|production]
 
 App Structure
 -------------
