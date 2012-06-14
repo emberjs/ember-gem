@@ -41,7 +41,7 @@ output 'assets'
 
 input 'app' do
   match 'index.html' do
-    concat 'index.html'
+    copy 'index.html'
   end
 
   match 'lib/**/*.js' do
