@@ -17,6 +17,7 @@ App Structure
     ├── Gemfile - Package dependencies for rakep/rack
     ├── Gemfile.lock - Here be dragons: don't touch, always include
     ├── app - App specific code
+    |   ├── index.html - The app entry point
     │   ├── css - App CSS or SCSS (.scss)
     │   ├── lib - App code, *modularized during build*
     │   ├── modules - Module code, *already modularized*
@@ -31,7 +32,6 @@ App Structure
     │   ├── app.js - Built out app JS
     │   └── loader.js - Built out JS module loader
     ├── config.ru - Rack development web server configuration
-    ├── index.html - The app entry point
     ├── tests - QUnit testing files
     │   ├── index.html - The testing entry point
     │   ├── qunit - Testing support files

@@ -27,10 +27,13 @@ describe Ember::CLI do
         path('config.ru').should exist
         path('Gemfile').should exist
         path('Guardfile').should exist
-        path('index.html').should exist
         path('LICENSE').should exist
         path('Rakefile').should exist
         path('README.md').should exist
+      end
+
+      it 'creates app root files' do
+        path('app/index.html').should exist
       end
 
       it 'creates app/css files' do

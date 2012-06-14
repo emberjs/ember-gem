@@ -11,7 +11,7 @@ use Rake::Pipeline::Middleware, 'Assetfile'
 
 require 'rack-rewrite'
 use Rack::Rewrite do
-  rewrite %r{^(.*)\/$}, '$1/index.html'
+  rewrite %r{^(.*)\/$}, '$1/assets/index.html'
 end
 
 run Rack::Directory.new('.')
