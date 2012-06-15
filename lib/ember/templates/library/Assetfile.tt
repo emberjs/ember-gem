@@ -1,0 +1,106 @@
+LIBNAME = '<%= name %>'
+
+require 'json'
+require 'rake-pipeline-web-filters'
+
+WebFilters = Rake::Pipeline::Web::Filters
+
+class LoaderFilter < WebFilters::MinispadeFilter
+  def generate_output(inputs, output)
+    inputs.each do |input|
+      code = input.read
+      module_id = @module_id_generator.call(input)
+      contents = "function(require) {\n#{code}\n}"
+      ret = "\nloader.register('#{module_id}', #{contents});\n"
+      output.write ret
+    end
+  end
+end
+
+class EmberAssertFilter < Filter
+  def generate_output(inputs, output)
+    inputs.each do |input|
+      result = input.read
+      result.gsub!(%r{^(\s)*Ember\.(assert|deprecate|warn)\((.*)\).*$}, '')
+      output.write(result)
+    end
+  end
+end
+
+class HandlebarsFilter < Filter
+  def generate_output(inputs, output)
+    inputs.each do |input|
+      code = input.read.to_json
+      output.write "\nreturn Ember.Handlebars.compile(#{code});\n"
+    end
+  end
+end
+
+output 'test_assets'
+
+input 'library' do
+  match 'core/**/*.js' do
+    filter LoaderFilter,
+      :module_id_generator => proc { |input|
+        input.path.sub(/^lib\//, "#{LIBNAME}/").sub(/\.js$/, '')
+      }
+
+    concat '<%= name %>-library.js'
+  end
+
+  match 'vendor/**/*.js' do
+    filter LoaderFilter,
+      :module_id_generator => proc { |input|
+        input.path.sub(/^vendor\//, '').sub(/\.js$/, '')
+      }
+
+    concat %w[
+      vendor/jquery.js
+      vendor/ember.js
+    ], 'vendors.js'
+  end
+
+  match 'plugins/**/*.js' do
+    if ENV['RAKEP_MODE'] == 'production'
+      uglify {|input| input}
+    end
+    concat do |input|
+      input.sub(/plugins\//, '')
+    end
+  end
+
+  match 'tests/**/*.js' do
+    filter LoaderFilter,
+      :module_id_generator => proc { |input|
+        input.path.sub(/^lib\//, "#{LIBNAME}/").sub(/\.js$/, '')
+      }
+    concat '<%= name %>-tests.js'
+  end
+end
+
+output 'assets'
+input 'library' do
+  match 'core/<%= name %>.js' do
+    concat '<%= name %>.js'
+  end
+  match 'core/**/*.js' do
+    concat '<%= name %>.js'
+  end
+end
+
+output 'assets'
+input 'library' do
+  match 'core/<%= name %>.js' do
+    filter EmberAssertFilter
+    uglify {|input| input}
+    concat '<%= name %>.min.js'
+  end
+  match 'core/**/*.js' do
+    filter EmberAssertFilter
+    uglify {|input| input}
+    concat '<%= name %>.min.js'
+  end
+end
+
+
+# vim: filetype=ruby

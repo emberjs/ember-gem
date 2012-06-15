@@ -1,0 +1,2 @@
+<%= title %> = Ember.Namespace.create({
+});
