@@ -1,5 +1,7 @@
 source :rubygems
 
+gem 'github_downloads'
+
 gem 'colored'
 
 gem 'guard'

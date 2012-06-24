@@ -2,10 +2,20 @@ APPNAME = '<%= name %>'
 
 require 'colored'
 require 'rake-pipeline'
+require 'github_downloads'
 
 desc "Build #{APPNAME}"
 task :build do
   Rake::Pipeline::Project.new('Assetfile').invoke
+end
+
+desc "Upload latest build to GitHub"
+task :upload_latest => :build do
+  uploader = GithubDownloads::Uploader.new
+  uploader.authenticate
+  
+  uploader.upload_file("<%= name %>.min.js", "<%= title %> Master (minified)", "assets/<%= name %>.min.js")
+  uploader.upload_file("<%= name %>.js", "<%= title %> Master", "assets/<%= name %>.js")
 end
 
 desc "Run tests with PhantomJS"
