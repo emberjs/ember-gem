@@ -14,8 +14,8 @@ task :upload_latest => :build do
   uploader = GithubDownloads::Uploader.new
   uploader.authenticate
   
-  uploader.upload_file("<%= name %>.min.js", "<%= title %> Master (minified)", "assets/<%= name %>.min.js")
-  uploader.upload_file("<%= name %>.js", "<%= title %> Master", "assets/<%= name %>.js")
+  uploader.upload_file("<%= name %>-latest.min.js", "<%= title %> Master (minified)", "assets/<%= name %>.min.js")
+  uploader.upload_file("<%= name %>-latest.js", "<%= title %> Master", "assets/<%= name %>.js")
 end
 
 desc "Run tests with PhantomJS"
