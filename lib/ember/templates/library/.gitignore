@@ -2,3 +2,5 @@
 tmp/
 assets/
 test_assets/
+
+.github-upload-token
