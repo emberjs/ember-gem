@@ -37,7 +37,6 @@ class HandlebarsFilter < Filter
 end
 
 output 'test_assets'
-
 input 'library' do
   match 'core/**/*.js' do
     filter LoaderFilter,
