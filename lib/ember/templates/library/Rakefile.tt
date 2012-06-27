@@ -1,10 +1,10 @@
-APPNAME = '<%= name %>'
+LIBNAME = '<%= name %>'
 
 require 'colored'
 require 'rake-pipeline'
 require 'github_downloads'
 
-desc "Build #{APPNAME}"
+desc "Build #{LIBNAME}"
 task :build do
   Rake::Pipeline::Project.new('Assetfile').invoke
 end
@@ -27,7 +27,7 @@ task :test => :build do
   cmd = "phantomjs tests/run-tests.js \"file://#{File.dirname(__FILE__)}/tests/index.html\""
 
   # Run the tests
-  puts "Running #{APPNAME} tests"
+  puts "Running #{LIBNAME} tests"
   success = system(cmd)
 
   if success
