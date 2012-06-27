@@ -12,7 +12,7 @@ end
 desc "Upload latest build to GitHub"
 task :upload_latest => :build do
   uploader = GithubDownloads::Uploader.new
-  uploader.authenticate
+  uploader.authorize
   
   uploader.upload_file("<%= name %>-latest.min.js", "<%= title %> Master (minified)", "assets/<%= name %>.min.js")
   uploader.upload_file("<%= name %>-latest.js", "<%= title %> Master", "assets/<%= name %>.js")
