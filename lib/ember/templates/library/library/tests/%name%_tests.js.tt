@@ -1,7 +1,7 @@
 require('jquery');
 require('ember');
 
-require('core/<%= name %>');
+require('<%= name %>');
 
 module("<%= title %>");
 
