@@ -47,18 +47,42 @@ class VersionFilter < Filter
   end
 end
 
-output 'test_assets'
+output 'assets'
 input 'library' do
   match 'core/**/*.js' do
     filter VersionFilter
+    concat %w[
+     core/<%= name %>.js
+    ], '<%= name %>.js'
+  end
+end
+
+output 'assets'
+input 'library' do
+  match 'core/**/*.js' do
+    filter VersionFilter
+    filter EmberAssertFilter
+    uglify {|input| input}
+    concat %w[
+     core/<%= name %>.js
+    ], '<%= name %>.min.js'
+  end  
+end
+
+output 'test_assets'
+input 'assets' do
+  match '<%= name %>.js' do
     filter LoaderFilter,
       :module_id_generator => proc { |input|
-        input.path.sub(/^lib\//, "#{LIBNAME}/").sub(/\.js$/, '')
+        "#{LIBNAME}"
       }
 
     concat '<%= name %>-library.js'
   end
+end
 
+output 'test_assets'
+input 'library' do
   match 'vendor/**/*.js' do
     filter LoaderFilter,
       :module_id_generator => proc { |input|
@@ -88,32 +112,5 @@ input 'library' do
     concat '<%= name %>-tests.js'
   end
 end
-
-output 'assets'
-input 'library' do
-  match 'core/<%= name %>.js' do
-    filter VersionFilter
-    concat '<%= name %>.js'
-  end
-  match 'core/**/*.js' do
-    concat '<%= name %>.js'
-  end
-end
-
-output 'assets'
-input 'library' do
-  match 'core/<%= name %>.js' do
-    filter VersionFilter
-    filter EmberAssertFilter
-    uglify {|input| input}
-    concat '<%= name %>.min.js'
-  end
-  match 'core/**/*.js' do
-    filter EmberAssertFilter
-    uglify {|input| input}
-    concat '<%= name %>.min.js'
-  end
-end
-
 
 # vim: filetype=ruby
