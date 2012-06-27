@@ -1,0 +1,8 @@
+loader.require('jquery');
+loader.require('ember');
+loader.require('<%= name %>');
+
+Ember.View.create({
+  templateName: '<%= name %>-version',
+  versionBinding: '<%= title %>.VERSION'
+}).append();
