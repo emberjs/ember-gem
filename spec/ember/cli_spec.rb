@@ -129,6 +129,7 @@ describe Ember::CLI do
         path('LICENSE').should exist
         path('Rakefile').should exist
         path('README.md').should exist
+        path('VERSION').should exist
       end
 
       it 'creates library/lib files' do

@@ -36,9 +36,21 @@ class HandlebarsFilter < Filter
   end
 end
 
+class VersionFilter < Filter
+  def generate_output(inputs, output)
+    version = File.open("VERSION", "rb").read
+    inputs.each do |input|
+      result = input.read
+      result.gsub!(/VERSION: '.*'/, "VERSION: '#{version}'")
+      output.write(result)
+    end
+  end
+end
+
 output 'test_assets'
 input 'library' do
   match 'core/**/*.js' do
+    filter VersionFilter
     filter LoaderFilter,
       :module_id_generator => proc { |input|
         input.path.sub(/^lib\//, "#{LIBNAME}/").sub(/\.js$/, '')
@@ -80,6 +92,7 @@ end
 output 'assets'
 input 'library' do
   match 'core/<%= name %>.js' do
+    filter VersionFilter
     concat '<%= name %>.js'
   end
   match 'core/**/*.js' do
@@ -90,6 +103,7 @@ end
 output 'assets'
 input 'library' do
   match 'core/<%= name %>.js' do
+    filter VersionFilter
     filter EmberAssertFilter
     uglify {|input| input}
     concat '<%= name %>.min.js'

@@ -16,6 +16,10 @@ module Ember
       name.capitalize
     end
 
+    def version
+      '0.0.1'
+    end
+
     def create
       self.destination_root = File.expand_path(path, destination_root)
       directory '.'
