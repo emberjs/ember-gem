@@ -4,6 +4,12 @@ require 'colored'
 require 'rake-pipeline'
 require 'github_downloads'
 
+def uploader
+  uploader = GithubDownloads::Uploader.new
+  uploader.authorize
+  uploader
+end
+
 desc "Build #{LIBNAME}"
 task :build do
   Rake::Pipeline::Project.new('Assetfile').invoke
@@ -11,9 +17,6 @@ end
 
 desc "Upload latest build to GitHub"
 task :upload_latest => :build do
-  uploader = GithubDownloads::Uploader.new
-  uploader.authorize
-  
   uploader.upload_file("<%= name %>-latest.min.js", "<%= title %> Master (minified)", "assets/<%= name %>.min.js")
   uploader.upload_file("<%= name %>-latest.js", "<%= title %> Master", "assets/<%= name %>.js")
 end
@@ -36,4 +39,19 @@ task :test => :build do
     puts "Tests Failed".red
     exit(1)
   end
+end
+
+desc "Bump version"
+task :bump_version do
+  version = File.open("VERSION", "rb").read
+  puts "pump version to next after #{version}"
+end
+
+desc "Release current version"
+task :release => :build do
+  version = File.open("VERSION", "rb").read
+  uploader.upload_file("<%= name %>-#{version}.min.js", "<%= title %> v#{version} (minified)", "assets/<%= name %>.min.js")
+  uploader.upload_file("<%= name %>-#{version}.js", "<%= title %> v#{version}", "assets/<%= name %>.js")
+
+  Rake::Task["bump_version"].invoke
 end
