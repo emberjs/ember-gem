@@ -1,0 +1,5 @@
+require('<%= name %>/core');
+
+App.ApplicationView = Ember.View.extend({
+  templateName: '<%= name %>/~templates/application'
+});

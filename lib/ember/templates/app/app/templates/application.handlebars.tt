@@ -1,0 +1,10 @@
+<nav role="navigation" class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#"><%= title %></a>
+    </div>
+  </div>
+</nav>
+<div id="main" role="main" class="container">
+  <%= title %> v{{App.VERSION}}
+</div>

@@ -1,3 +1,5 @@
 require('<%= name %>/core');
 require('<%= name %>/store');
-require('<%= name %>/state_manager');
+require('<%= name %>/router');
+require('<%= name %>/controllers');
+require('<%= name %>/views');

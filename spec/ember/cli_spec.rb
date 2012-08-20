@@ -42,15 +42,18 @@ describe Ember::CLI do
       it 'creates app/lib files' do
         path('app/lib').should exist
         path('app/lib/controllers').should exist
+        path('app/lib/controllers/application.js').should exist
+        path('app/lib/views').should exist
+        path('app/lib/views/application.js').should exist
+        path('app/lib/models').should exist
+        path('app/lib/controllers.js').should exist
         path('app/lib/core.js').should exist
+        path('app/lib/env.js').should exist
         path('app/lib/ext.js').should exist
         path('app/lib/main.js').should exist
-        path('app/lib/models').should exist
-        path('app/lib/state_manager.js').should exist
-        path('app/lib/states').should exist
-        path('app/lib/states/start.js').should exist
+        path('app/lib/router.js').should exist
         path('app/lib/store.js').should exist
-        path('app/lib/views').should exist
+        path('app/lib/views.js').should exist
       end
 
       it 'creates app/modules files' do
@@ -71,7 +74,7 @@ describe Ember::CLI do
 
       it 'creates app/templates files' do
         path('app/templates').should exist
-        path('app/templates/main_page.handlebars').should exist
+        path('app/templates/application.handlebars').should exist
       end
 
       it 'creates app/tests files' do
@@ -81,9 +84,10 @@ describe Ember::CLI do
 
       it 'creates app/vendor files' do
         path('app/vendor').should exist
-        path('app/vendor/ember-data.js').should exist
-        path('app/vendor/ember.js').should exist
         path('app/vendor/jquery.js').should exist
+        path('app/vendor/handlebars.js').should exist
+        path('app/vendor/ember.js').should exist
+        path('app/vendor/ember-data.js').should exist
       end
 
       it 'creates tests/ files' do

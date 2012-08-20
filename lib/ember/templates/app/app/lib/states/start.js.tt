@@ -1,9 +1,0 @@
-require('<%= name %>/core');
-
-App.StartState = Ember.ViewState.extend({
-
-  view: Ember.View.extend({
-    templateName: '<%= name %>/~templates/main_page'
-  })
-
-});
