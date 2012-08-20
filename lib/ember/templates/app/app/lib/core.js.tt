@@ -6,7 +6,5 @@ require('<%= name %>/ext');
 require('<%= name %>/env');
 
 App = Ember.Application.create({
-  VERSION: '0.1',
-
-  ready: Em.alias('initialize')
+  VERSION: '0.1'
 });
