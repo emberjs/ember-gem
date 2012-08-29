@@ -36,6 +36,7 @@ describe Ember::CLI do
       it 'creates app/css files' do
         path('app/css').should exist
         path('app/css/bootstrap.css').should exist
+        path('app/css/font-awesome.css').should exist
         path('app/css/main.css').should exist
       end
 
@@ -67,9 +68,10 @@ describe Ember::CLI do
 
       it 'creates app/static files' do
         path('app/static').should exist
-        path('app/static/img').should exist
-        path('app/static/img/glyphicons-halflings.png').should exist
-        path('app/static/img/glyphicons-halflings-white.png').should exist
+        path('app/static/font/fontawesome-webfont.eot').should exist
+        path('app/static/font/fontawesome-webfont.svg').should exist
+        path('app/static/font/fontawesome-webfont.ttf').should exist
+        path('app/static/font/fontawesome-webfont.woff').should exist
       end
 
       it 'creates app/templates files' do

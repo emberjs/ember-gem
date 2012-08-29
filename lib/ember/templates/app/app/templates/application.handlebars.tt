@@ -1,4 +1,4 @@
-<nav role="navigation" class="navbar navbar-fixed-top">
+<nav role="navigation" class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="#"><%= title %></a>
@@ -6,5 +6,5 @@
   </div>
 </nav>
 <div id="main" role="main" class="container">
-  <%= title %> v{{App.VERSION}}
+  <i class="icon-beaker"></i> <%= title %> v{{App.VERSION}}
 </div>
