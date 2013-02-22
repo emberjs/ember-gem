@@ -8,7 +8,7 @@ gem 'compass'
 gem 'rake-pipeline', :git => 'https://github.com/livingsocial/rake-pipeline.git'
 gem 'rake-pipeline-web-filters', :git => 'https://github.com/wycats/rake-pipeline-web-filters.git'
 
-group :dev do
+group :development do
   gem 'rack'
   gem 'rack-rewrite'
   gem 'rack-streaming-proxy'
@@ -20,7 +20,7 @@ group :dev do
   gem 'rb-inotify', :require => false
 end
 
-group :prod do
+group :production do
   gem 'therubyracer'
   gem 'uglifier'
 
