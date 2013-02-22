@@ -1,8 +1,6 @@
-require 'colored'
-require 'rake-pipeline'
-
 desc "Build the app"
 task :build do
+  require 'rake-pipeline'
   Rake::Pipeline::Project.new('Assetfile').invoke
 end
 
@@ -18,6 +16,7 @@ task :test => :build do
   puts "Running project tests"
   success = system(cmd)
 
+  require 'colored'
   if success
     puts "Tests Passed".green
   else
