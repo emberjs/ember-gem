@@ -27,10 +27,14 @@ describe Ember::CLI do
         path('config.ru').should exist
         path('Gemfile').should exist
         path('Guardfile').should exist
-        path('index.html').should exist
         path('LICENSE').should exist
         path('Rakefile').should exist
         path('README.md').should exist
+        path('VERSION').should exist
+      end
+
+      it 'creates app/index.html' do
+        path('app/index.html').should exist
       end
 
       it 'creates app/css files' do
@@ -57,7 +61,7 @@ describe Ember::CLI do
         path('app/lib/views.js').should exist
       end
 
-      it 'creates app/modules files' do
+      it 'creates app/modules' do
         path('app/modules').should exist
       end
 
@@ -97,6 +101,7 @@ describe Ember::CLI do
         path('tests/qunit').should exist
         path('tests/qunit/qunit.css').should exist
         path('tests/qunit/qunit.js').should exist
+        path('tests/config.ru').should exist
         path('tests/index.html').should exist
         path('tests/run-tests.js').should exist
       end

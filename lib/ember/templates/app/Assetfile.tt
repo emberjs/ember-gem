@@ -1,4 +1,7 @@
+Dir.chdir File.dirname(__FILE__)
+
 APPNAME = '<%= name %>'
+VERSION = File.read('VERSION').strip
 
 require 'json'
 require 'rake-pipeline-web-filters'
@@ -36,16 +39,34 @@ class HandlebarsFilter < Filter
   end
 end
 
+class VersionFilter < Filter
+  def generate_output(inputs, output)
+    inputs.each do |input|
+      code = input.read
+      code.gsub! %r/{{VERSION}}/, VERSION
+      output.write(code)
+    end
+  end
+end
+
 output 'assets'
 
 input 'app' do
+  match '*.html' do
+    copy
+  end
+
+  match 'lib/core.js' do
+    filter VersionFilter
+  end
+
   match 'lib/**/*.js' do
     filter LoaderFilter,
       :module_id_generator => proc { |input|
         input.path.sub(/^lib\//, "#{APPNAME}/").sub(/\.js$/, '')
       }
 
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       filter EmberAssertFilter
       uglify {|input| input}
     end
@@ -58,7 +79,7 @@ input 'app' do
         input.path.sub(/^vendor\//, '').sub(/\.js$/, '')
       }
 
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       filter EmberAssertFilter
       uglify {|input| input}
     end
@@ -70,7 +91,7 @@ input 'app' do
   end
 
   match 'modules/**/*.js' do
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       filter EmberAssertFilter
       uglify {|input| input}
     end
@@ -78,7 +99,7 @@ input 'app' do
   end
 
   match 'plugins/**/*.js' do
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       uglify {|input| input}
     end
     concat do |input|
@@ -92,7 +113,7 @@ input 'app' do
       :module_id_generator => proc { |input|
         input.path.sub(/^templates\//, "#{APPNAME}/~templates/").sub(/\.handlebars$/, '')
       }
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       uglify {|input| input}
     end
     concat 'app.js'
@@ -107,7 +128,7 @@ input 'app' do
   end
 
   match 'css/**/*.css' do
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       yui_css
     end
     concat ['bootstrap.css', 'main.css'], 'app.css'
@@ -115,7 +136,7 @@ input 'app' do
 
   match 'css/**/*.scss' do
     sass
-    if ENV['RAKEP_MODE'] == 'production'
+    if ENV['RAKEP_ENV'] == 'production'
       yui_css
     end
     concat 'app.css'

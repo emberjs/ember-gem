@@ -50,8 +50,8 @@ which you need to have installed.
 
 Or you can run the tests via:
 
-    $ bundle exec rackup
-    $ open http://localhost:9292/tests/index.html
+    $ bundle exec rackup -p 9293 tests/config.ru
+    $ open http://localhost:9293/
 
 If you want to continuously run the tests every time a file changes, invoke:
 

@@ -1,6 +1,8 @@
 require 'rake-pipeline'
 require 'rake-pipeline/middleware'
-use Rake::Pipeline::Middleware, 'Assetfile'
+
+assetfile = File.expand_path('../Assetfile', __FILE__)
+use Rake::Pipeline::Middleware, Rake::Pipeline::Project.new(assetfile)
 
 # require 'rack/streaming_proxy'
 # use Rack::StreamingProxy do |request|
@@ -18,4 +20,4 @@ use Rack::Rewrite do
   rewrite %r{^(.*)\/$}, '$1/index.html'
 end
 
-run Rack::Directory.new('.')
+run Rack::Directory.new('assets')
