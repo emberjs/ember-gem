@@ -11,6 +11,7 @@ gem 'rake-pipeline-web-filters', :git => 'https://github.com/wycats/rake-pipelin
 group :dev do
   gem 'guard'
   gem 'guard-rake'
+  gem 'rb-fsevent', '~> 0.9.1'
 
   gem 'rack'
   gem 'rack-rewrite'
