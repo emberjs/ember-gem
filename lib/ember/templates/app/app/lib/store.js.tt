@@ -1,5 +1,5 @@
 require('<%= name %>/core');
 
 App.store = DS.Store.create({
-  revision: 11
+  revision: 12
 });
