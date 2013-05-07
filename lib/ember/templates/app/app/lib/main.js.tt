@@ -3,5 +3,3 @@ require('<%= name %>/store');
 require('<%= name %>/router');
 require('<%= name %>/controllers');
 require('<%= name %>/views');
-
-App.initialize();
