@@ -1,5 +1,3 @@
 require('<%= name %>/core');
 
-App.store = DS.Store.create({
-  revision: 12
-});
+App.Store = DS.Store.extend();
