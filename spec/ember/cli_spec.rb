@@ -5,7 +5,7 @@ describe Ember::CLI do
   def ember(*args)
     capture_io {
       Ember::CLI.start(args)
-     }
+    }
   end
 
   describe "new" do
