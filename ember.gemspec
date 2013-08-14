@@ -18,6 +18,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency 'thor'
+  gem.add_dependency 'ember-source', '1.0.0.rc7'
+  gem.add_dependency 'ember-data-source'
 
   gem.add_development_dependency 'rake'
   gem.add_development_dependency 'rspec'
