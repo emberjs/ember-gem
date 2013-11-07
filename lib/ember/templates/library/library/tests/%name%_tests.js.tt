@@ -1,0 +1,10 @@
+require('jquery');
+require('ember');
+
+require('<%= name %>');
+
+module("<%= title %>");
+
+test("<%= title %> is defined", function () {
+  ok(typeof <%= title %> !== 'undefined', "<%= title %> is defined");
+});

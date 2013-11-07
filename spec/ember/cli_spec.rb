@@ -117,4 +117,71 @@ describe Ember::CLI do
       include_examples "a new app"
     end
   end
+
+  describe "library" do
+    shared_examples "a new library" do
+      before do
+        ember('library', library_path)
+      end
+
+      def path(*segments)
+        Pathname.new(File.join(tmp, library_path, *segments))
+      end
+
+      let(:library_name) { File.basename(library_path) }
+
+      it 'creates root files' do
+        path.should exist
+        path('.gitignore').should exist
+        path('Assetfile').should exist
+        path('config.ru').should exist
+        path('Gemfile').should exist
+        path('Guardfile').should exist
+        path('LICENSE').should exist
+        path('Rakefile').should exist
+        path('README.md').should exist
+        path('VERSION').should exist
+      end
+
+      it 'creates library/lib files' do
+        path('library/core').should exist
+        path("library/core/#{library_name}.js").should exist
+      end
+
+      it 'creates library/plugins files' do
+        path('library/plugins').should exist
+        path('library/plugins/loader.js').should exist
+      end
+
+      it 'creates library/tests files' do
+        path('library/tests').should exist
+        path("library/tests/#{library_name}_tests.js").should exist
+      end
+
+      it 'creates library/vendor files' do
+        path('library/vendor').should exist
+        path('library/vendor/ember.js').should exist
+        path('library/vendor/jquery.js').should exist
+      end
+
+      it 'creates tests/ files' do
+        path('tests').should exist
+        path('tests/qunit').should exist
+        path('tests/qunit/qunit.css').should exist
+        path('tests/qunit/qunit.js').should exist
+        path('tests/index.html').should exist
+        path('tests/run-tests.js').should exist
+      end
+    end
+
+    context "given a name" do
+      let(:library_path) { "inky-lib" }
+      include_examples "a new library"
+    end
+
+    context "given a path" do
+      let(:library_path) { "path/to/inky" }
+      include_examples "a new library"
+    end
+  end
 end

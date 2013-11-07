@@ -1,0 +1,66 @@
+LIBNAME = '<%= name %>'
+
+require 'colored'
+require 'rake-pipeline'
+require 'github_downloads'
+
+def uploader
+  uploader = GithubDownloads::Uploader.new
+  uploader.authorize
+  uploader
+end
+
+def pipeline
+  Rake::Pipeline::Project.new('Assetfile')
+end
+
+desc "Clean #{LIBNAME}"
+task :clean do
+  pipeline.clean
+end
+
+desc "Build #{LIBNAME}"
+task :build => :clean do
+  pipeline.invoke
+end
+
+desc "Upload latest build to GitHub"
+task :upload_latest => :build do
+  uploader.upload_file("<%= name %>-latest.min.js", "<%= title %> Master (minified)", "assets/<%= name %>.min.js")
+  uploader.upload_file("<%= name %>-latest.js", "<%= title %> Master", "assets/<%= name %>.js")
+end
+
+desc "Run tests with PhantomJS"
+task :test => :build do
+  unless system("which phantomjs > /dev/null 2>&1")
+    abort "PhantomJS is not installed. Download from http://phantomjs.org/"
+  end
+
+  cmd = "phantomjs tests/run-tests.js \"file://#{File.dirname(__FILE__)}/tests/index.html\""
+
+  # Run the tests
+  puts "Running #{LIBNAME} tests"
+  success = system(cmd)
+
+  if success
+    puts "Tests Passed".green
+  else
+    puts "Tests Failed".red
+    exit(1)
+  end
+end
+
+desc "Bump version"
+task :bump_version do
+  version = File.open("VERSION", "rb").read
+  puts "pump version to next after #{version}"
+end
+
+desc "Release current version"
+task :release => :build do
+  version = File.open("VERSION", "rb").read
+  uploader.upload_file("<%= name %>-#{version}.min.js", "<%= title %> v#{version} (minified)", "assets/<%= name %>.min.js")
+  uploader.upload_file("<%= name %>-#{version}.js", "<%= title %> v#{version}", "assets/<%= name %>.js")
+
+  Rake::Task["bump_version"].invoke
+end

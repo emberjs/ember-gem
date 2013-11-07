@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title><%= title %> Demo App</title>
+    <link rel="stylesheet" href="bootstrap.css" media="screen" />
+    <link rel="stylesheet" href="main.css" media="screen" />
+  </head>
+  <body>
+    <script src="../test_assets/loader.js"></script>
+    <script src="../test_assets/vendors.js"></script>
+    <script src="../test_assets/<%= title %>-library.js"></script>
+    <script src="app.js" ></script>
+    <script type="text/x-handlebars" data-template-name="<%= name %>-version" >
+      Version of <%= title %> library {{<%= title %>.VERSION}}
+    </script>
+  </body>
+</html>
